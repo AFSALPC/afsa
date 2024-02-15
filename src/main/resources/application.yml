@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/afsal
+    username: afsal
+    password: afsal
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    oauth2:
+      client:
+        registration:
+          # Define your OAuth2 client registration here if needed
+          # For example, GitHub
+          github:
+            clientId: 4625cc28f132772ff365
+            clientSecret: bd47885e9504b56b39169e4d092ba414049c8abb
+            redirectUri: "http://localhost:3000/redirectPage"
+            # redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+
+# app:
+#   auth:
+#     tokenSecret: your_token_secret
+#     tokenExpirationMsec: 864000000
+  cors:
+    allowedOrigins:
+      - http://localhost:3000
+      - http://localhost:8080
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
